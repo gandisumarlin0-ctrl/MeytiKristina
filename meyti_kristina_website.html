@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meyti Kristina — Official</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #b8966a;
+    --gold-dim: #7a6040;
+    --bg: #06060e;
+    --bg2: #09091a;
+    --text: #e8e0d0;
+    --text-dim: #8a8070;
+    --white: #f5f0e8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 60px;
+    background: linear-gradient(180deg, #06060ecc 0%, transparent 100%);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 300;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 40px 80px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 20% 50%, #0d1b3e22 0%, transparent 60%),
+      radial-gradient(ellipse 50% 70% at 85% 20%, #1a0d3e18 0%, transparent 60%),
+      linear-gradient(160deg, #06060e 0%, #0a0a1f 50%, #060610 100%);
+  }
+
+  /* Animated stars */
+  .stars {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .star {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s);
+    opacity: 0;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; }
+    50% { opacity: var(--op, 0.4); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    animation: fadeUp 1.2s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.6em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 10vw, 110px);
+    font-weight: 300;
+    line-height: 0.9;
+    color: var(--white);
+    letter-spacing: 0.05em;
+  }
+
+  .hero-name .italic {
+    font-style: italic;
+    color: #c8bfb0;
+    display: block;
+    font-size: 0.6em;
+    letter-spacing: 0.15em;
+    margin-bottom: 6px;
+  }
+
+  .hero-divider {
+    width: 80px;
+    height: 0.5px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 28px auto;
+  }
+
+  .hero-tagline {
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 50px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 12px 32px;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 300;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: #06060e;
+  }
+
+  .btn-primary:hover {
+    background: #cca878;
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    border: 0.5px solid var(--gold-dim);
+    color: var(--gold);
+    background: transparent;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+    animation: fadeUp 1.2s ease 0.6s both;
+  }
+
+  .scroll-hint span {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 0.5px;
+    height: 40px;
+    background: linear-gradient(180deg, var(--gold-dim), transparent);
+    animation: scrollAnim 1.8s ease-in-out infinite;
+  }
+
+  @keyframes scrollAnim {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 100px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: #1e1e2e;
+    max-width: 60px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: #c8bfb0;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    border: 0.5px solid #1e1e30;
+    position: relative;
+    background: linear-gradient(135deg, #0d0d20, #0a0a18);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-frame-inner {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    font-style: italic;
+    color: #1a1a2e;
+    user-select: none;
+  }
+
+  .about-frame::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 0.5px solid #1a1a2e;
+  }
+
+  .about-gold-tag {
+    position: absolute;
+    bottom: -1px;
+    left: 20px;
+    background: var(--gold);
+    color: #06060e;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    font-weight: 400;
+  }
+
+  .about-text p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #9a9080;
+    margin-bottom: 20px;
+  }
+
+  .about-text p strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  /* ── MUSIC / SONGS ── */
+  #music {
+    border-top: 0.5px solid #111120;
+  }
+
+  .songs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .song-card {
+    background: #09091a;
+    padding: 32px 28px;
+    border: 0.5px solid #111128;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+    cursor: pointer;
+  }
+
+  .song-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .song-card:hover { border-color: #2a2a3e; }
+  .song-card:hover::before { transform: scaleX(1); }
+
+  .song-num {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .song-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+
+  .song-desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+
+  .song-tag {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    border: 0.5px solid #2a2a30;
+    padding: 4px 10px;
+  }
+
+  /* ── LINKS ── */
+  #links {
+    border-top: 0.5px solid #111120;
+    text-align: center;
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 48px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .link-card {
+    background: #09091a;
+    border: 0.5px solid #111128;
+    padding: 28px 24px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s;
+    color: var(--text);
+  }
+
+  .link-card:hover {
+    background: #0d0d22;
+    border-color: var(--gold-dim);
+    transform: translateY(-2px);
+  }
+
+  .link-icon {
+    width: 36px;
+    height: 36px;
+    border: 0.5px solid #2a2a40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .link-info { text-align: left; }
+
+  .link-platform {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .link-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--white);
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    border-top: 0.5px solid #111120;
+    text-align: center;
+  }
+
+  .contact-email {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 4vw, 42px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+    margin-top: 32px;
+    letter-spacing: 0.05em;
+  }
+
+  .contact-note {
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-top: 16px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 0.5px solid #111120;
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: #3a3a4a;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    font-weight: 300;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    section { padding: 70px 24px; }
+    #about { grid-template-columns: 1fr; gap: 40px; }
+    .about-visual { max-width: 280px; margin: 0 auto; }
+    .songs-grid { grid-template-columns: 1fr; }
+    .links-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STARS -->
+<div class="stars" id="stars"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">MK</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#music">Music</a></li>
+    <li><a href="#links">Find Me</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Singer · Songwriter · Pop Acoustic</p>
+    <h1 class="hero-name">
+      <span class="italic">Meyti</span>
+      Kristina
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">Lagu-lagu kecil dari hati</p>
+    <div class="hero-cta">
+      <a href="#music" class="btn btn-primary">Dengarkan Musik</a>
+      <a href="#contact" class="btn btn-outline">Kolaborasi</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual">
+    <div class="about-frame">
+      <span class="about-frame-inner">MK</span>
+      <div class="about-gold-tag">Meyti Kristina</div>
+    </div>
+  </div>
+  <div class="about-text">
+    <p class="section-label">Tentang Saya</p>
+    <h2 class="section-title">Musik adalah cara <em>aku bicara</em> jujur</h2>
+    <p>Haii, aku <strong>Meyti Kristina</strong>! Di sini aku berbagi lagu-lagu original yang lahir dari perasaan yang mungkin juga pernah kamu rasakan.</p>
+    <p>Tentang <strong>cinta</strong>, kehilangan, harapan, dan semua hal kecil yang kadang sulit diungkapkan dengan kata-kata biasa.</p>
+    <p>Musik bagiku bukan sekadar melodi — tapi cara aku berbicara jujur ke dunia. Semoga setiap lagu yang aku buat bisa menemanimu di momen-momenmu. 🎶</p>
+    <a href="#music" class="btn btn-outline" style="margin-top: 16px; display: inline-block;">Dengarkan →</a>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section id="music">
+  <p class="section-label">Musik</p>
+  <h2 class="section-title">Lagu <em>Original</em></h2>
+
+  <div class="songs-grid">
+    <div class="song-card">
+      <p class="song-num">01</p>
+      <h3 class="song-title">Doa Yang Berbeda</h3>
+      <p class="song-desc">Tentang cinta yang tulus di antara dua dunia yang berbeda keyakinan.</p>
+      <span class="song-tag">Pop Acoustic</span>
+    </div>
+    <div class="song-card">
+      <p class="song-num">02</p>
+      <h3 class="song-title">Coming Soon</h3>
+      <p class="song-desc">Lagu baru sedang dalam proses. Nyalakan notifikasi untuk update terbaru.</p>
+      <span class="song-tag">2026</span>
+    </div>
+    <div class="song-card">
+      <p class="song-num">03</p>
+      <h3 class="song-title">Coming Soon</h3>
+      <p class="song-desc">Masih banyak cerita yang ingin aku bagikan lewat melodi.</p>
+      <span class="song-tag">Original</span>
+    </div>
+  </div>
+</section>
+
+<!-- LINKS -->
+<section id="links">
+  <p class="section-label" style="justify-content: center;">Temukan Aku</p>
+  <h2 class="section-title" style="text-align:center;">Di Semua <em>Platform</em></h2>
+
+  <div class="links-grid">
+    <a href="#" class="link-card">
+      <div class="link-icon">▶</div>
+      <div class="link-info">
+        <p class="link-platform">YouTube</p>
+        <p class="link-name">Meyti Kristina Official</p>
+      </div>
+    </a>
+    <a href="#" class="link-card">
+      <div class="link-icon">♪</div>
+      <div class="link-info">
+        <p class="link-platform">Spotify</p>
+        <p class="link-name">Meyti Kristina</p>
+      </div>
+    </a>
+    <a href="#" class="link-card">
+      <div class="link-icon">◈</div>
+      <div class="link-info">
+        <p class="link-platform">Instagram</p>
+        <p class="link-name">@myicztn</p>
+      </div>
+    </a>
+    <a href="#" class="link-card">
+      <div class="link-icon">♬</div>
+      <div class="link-info">
+        <p class="link-platform">TikTok</p>
+        <p class="link-name">@myiztn</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label" style="justify-content: center;">Hubungi Aku</p>
+  <h2 class="section-title" style="text-align:center;">Kolaborasi & <em>Booking</em></h2>
+  <p class="contact-email">meytikristina2@gmail.com</p>
+  <p class="contact-note">Untuk kolaborasi, booking, atau sekadar say hi 👋</p>
+  <div style="margin-top: 40px;">
+    <a href="mailto:meytikristina2@gmail.com" class="btn btn-primary">Kirim Pesan</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Meyti Kristina. All rights reserved.</p>
+  <span class="footer-logo">Meyti Kristina Official</span>
+  <p>Made with 🎵</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Generate stars
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    sta
